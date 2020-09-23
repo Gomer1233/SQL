@@ -1,0 +1,22 @@
+﻿1.
+#Установите СУБД MySQL. Создайте в домашней директории файл .my.cnf, задав в нем логин и пароль, который указывался при установке.
+
+student@Ubuntu-MySQL-VirtualBox:~$ touch .my.cnf
+student@Ubuntu-MySQL-VirtualBox:~$ sudo nano .my.cnf
+[client]
+user=root
+password=master
+
+2.
+# Создайте базу данных example, разместите в ней таблицу users, состоящую из двух столбцов, числового id и строкового name
+
+mysql> CREATE DATABASE example;
+mysql> CREATE TABLE users (id INT UNSIGNED, name VARCHAR(20));
+mysql> INSERT INTO users VALUES (1, 'Andrew');
+
+3. 
+# Создайте дамп базы данных example из предыдущего задания, разверните содержимое дампа в новую базу данных sample.
+student@Ubuntu-MySQL-VirtualBox:~$ touch example_dump.sql
+mysql> CREATE DATABASE sample;
+student@Ubuntu-MySQL-VirtualBox:~$ mysqldump example > example_dump.sql
+tudent@Ubuntu-MySQL-VirtualBox:~$ mysql sample < example_dump.sql
